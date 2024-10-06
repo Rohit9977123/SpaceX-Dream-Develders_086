@@ -1,16 +1,50 @@
 class CheckoutPage {
-    completeCheckout() {
-         
-        
-       // Simulate adding a product to the cart (make sure the product is out of stock)
-       cy.get('#search > input').type('HTC Touch HD'); // Searching for the product
-       cy.get('.btn.btn-default.btn-lg').click();  // Click on the search button
-
-       // Assuming we add the product to the cart
-       cy.get('.product-layout .button-group button').contains('Add to Cart').click({force: true}); // Add to Cart button
-
     
+        
+        billingDetails(){
+            cy.get('#content > div.buttons.clearfix > div.pull-right > a').click();
+            cy.get('[id="button-payment-address"]').click();
+            cy.wait(2000)
+            
+        }
+        //click on continue
+       
+       
+          
+          //Step 3:
+          //clicking continue for Delivery Details
+
+        deliveryDetails(){
+        cy.get('#button-shipping-address').click()
+       
+       }
+        //Creating Method for :Step 4: Delivery Method 
+        //clicking continue Delivery Details
+     
+        deliveryMethod(){
+            cy.xpath('//input[@id="button-shipping-method"]').click()
+        }
+     
+
+       
+         
+    //Step 5: PaymentMethod 
+         paymentCheckBox(){
+
+           //Marking Payment Term and Condition 
+           cy.get('[name="agree"]').check()
+
+           //clicking continue
+
+           cy.xpath('//input[@id="button-payment-method"]').click()
+       }
+         //Step 6: Confirming Order 
+    orderConfirm(){
+        cy.xpath('//input[@id="button-confirm"]').click()
+
+       cy.get('[id="content"]').contains('Your order has been successfully processed!').should('be.visible')
     }
 }
+
 
 export default CheckoutPage;
