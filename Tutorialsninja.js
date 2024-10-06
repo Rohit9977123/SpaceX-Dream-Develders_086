@@ -20,17 +20,21 @@ describe('Tutorialsninja', () => {
 
         // Step 2: Log into the user account
         loginPage.login();
-
+       
         // Step 3: Search for 'iPhone' and add the product to the cart
         searchPage.searchProduct('iPhone');
         searchPage.addToCart();
 
         // Step 4: Go to the cart and proceed to checkout
         cartPage.goToCart();
-        cartPage.proceedToCheckout();
+        
 
         // Step 5: Complete the checkout process
-        checkoutPage.completeCheckout();
+        checkoutPage.billingDetails();
+        checkoutPage.deliveryDetails();
+        checkoutPage.deliveryMethod();
+        checkoutPage.paymentCheckBox();
+        checkoutPage.orderConfirm();
 
         // Step 6: Go to the Address Book, edit the address, and update it with new details
         addressBookPage.goToAddressBook();
@@ -38,4 +42,5 @@ describe('Tutorialsninja', () => {
         addressBookPage.updateAddress('John', 'Doe', 'New Company', '123 Street', 'Apt 4', 'New City', '10001', 'United States', 'New York');
     });
 });
+
 
